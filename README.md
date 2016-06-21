@@ -8,7 +8,7 @@ Currently supports in the configuration:
 * system-wide combination exclusions
 * per-person history counter
 
-The configuration is supplied as a json string. 
+The configuration is supplied as a json string, should be self-explanatory
 
 Demo will print the updated configuration with history. You can easily use that to feed back in (i.e. for subsequent runs, perhaps to generate a whole year's worth of assignments).
 
