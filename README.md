@@ -18,3 +18,5 @@ If you'd like to contribute, here's some ideas which would be great:
 * auto-generated weights based on history counter (in combination with preferences) - currently it's always random
 * auto-generated weights based on distribution (if someone only has one potential honor, perhaps it should have more weight)
 * nice ui presentation
+
+testing framework should probably be the first priority so that we can commit the other changes more reliably
