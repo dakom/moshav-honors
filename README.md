@@ -1,4 +1,4 @@
-# Moshav Honors Generator
+# Moshav Shul Honors Generator
 
 Generates honors for the shul
 
