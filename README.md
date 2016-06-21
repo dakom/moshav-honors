@@ -15,5 +15,6 @@ Demo will print the updated configuration with history. You can easily use that 
 If you'd like to contribute, here's some ideas which would be great:
 * testing framework
 * weights for preferences (i.e. someone might not just prefer to have or not have, but rather to sometimes have)
-* auto-generated weights based on history counter (in combination with preferences)
+* auto-generated weights based on history counter (in combination with preferences) - currently it's always random
+* auto-generated weights based on distribution (if someone only has one potential honor, perhaps it should have more weight)
 * nice ui presentation
