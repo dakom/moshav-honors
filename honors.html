@@ -19,6 +19,7 @@
 
         var HONORS = (function() {
             var people, honors, honorIndexLookup, invalidHonorComboMasks, FULL_MASK;
+            var debugLog = [];
 
             function honorListToMask(hList) {
                 var hMask = 0;
@@ -95,6 +96,7 @@
                 honors = {};
                 honorIndexLookup = [];
                 invalidHonorComboMasks = [];
+
                 FULL_MASK = 0;
 
                 for (var i = 0; i < honorsConfig.length; i++) {
@@ -192,7 +194,7 @@
                                 //if the target honor falls in one of the invalid combos...
                                 //and the person has one of those combos assigned...
                                 if (((honor.bit & combo) != 0) && ((person.honorMask & combo) != 0)) {
-                                    //console.log("Not assigning [" + honorsToString(honor) + "] to [" + person.name + "], combo of: [" + honorsToString(combo) + "] is invalid and they have: [" + honorsToString(person.honors) + "]");
+                                    log("Not assigning [" + honor.id + "] to [" + person.name + "], combo of: [" + honorMaskToList(combo) + "] is invalid and they have: [" + honorMaskToList(person.honorMask) + "] which yields exclusion on [" + honorMaskToList(person.honorMask & combo) + "]");
 
                                     //take this person out of the running for this honor on the next try
                                     //but do it via a copy so that the next honor uses the full list
@@ -294,6 +296,11 @@
                 }
             }
 
+            function log(str) {
+              console.log(str);
+              debugLog.push(str);
+            }
+
             return {
                 Init: function(configSettings) {
                     config = JSON.parse(configSettings);
@@ -305,6 +312,15 @@
                 ExportNewConfig: exportNewConfig,
 
                 PrintPeople: printPeople,
+
+
+                PrintDebugLog: function() {
+                  for(var i = 0; i < debugLog.length; i++) {
+                    document.write("<p><b>" + debugLog[i] + "</b></p>");
+                  }
+
+
+                }
             }
 
         }());
@@ -312,6 +328,7 @@
         HONORS.Init(configSettings);
         HONORS.GenerateAssignments();
         HONORS.PrintPeople();
+        HONORS.PrintDebugLog();
 
         document.write("<p> Original Config: " + configSettings + "</p>");
         document.write("<p> Updated Config: " + JSON.stringify(HONORS.ExportNewConfig())+ "</p>");
