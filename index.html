@@ -1,0 +1,77 @@
+<html>
+<head>
+    <style type="text/css">
+        span.highlight {
+            background-color: yellow;
+        }
+    </style>
+
+</head>
+<body>
+  <script src="honors.js"></script>
+  <script type="text/javascript">
+    HONORS.LoadSettings({
+        "honors": [{
+            "id": "DVAR",
+            "name": "D'var Torah"
+        }, {
+            "id": "KABBALAT",
+            "name": "Kabbalat Shabbat"
+        }, {
+            "id": "SHACHARIT",
+            "name": "Shacharit"
+        }, {
+            "id": "GABBAI",
+            "name": "Gabbai"
+        }, {
+            "id": "HAFTORAH",
+            "name": "Haftorah"
+        }, {
+            "id": "MUSAF",
+            "name": "Musaf"
+        }, {
+            "id": "MINCHA",
+            "name": "Mincha"
+        }, {
+            "id": "MAARIV",
+            "name": "Maariv"
+        }],
+        "invalidCombos": [
+            ["GABBAI", "HAFTORAH"],
+            ["SHACHARIT", "MUSAF"]
+        ]
+    });
+    HONORS.LoadConfig({
+        "people": [{
+            "name": "Reuvein",
+            "rejectHonors": ["GABBAI"]
+        }, {
+            "name": "Shimon",
+            "acceptHonors": ["DVAR", "MINCHA"]
+        }, {
+            "name": "Levi"
+        }]
+    });
+
+    var reportType = window.location.hash.substr(1);
+
+    if(reportType == "full") {
+      HONORS.PrintSettings();
+    }
+
+    for(var i = 1; i <= 10; i++) {
+      var label = "WEEK " + i;
+
+      if(reportType == "full") {
+        HONORS.PrintConfig(label);
+      }
+      var newConfig = HONORS.Generate();
+      HONORS.PrintAssignments("WEEK " + i);
+      if(reportType == "full") {
+        HONORS.PrintReport("WEEK " + i);
+      }
+      HONORS.LoadConfig(newConfig);
+    }
+  </script>
+</body>
+</html>
